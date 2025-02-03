@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Blocky Caterpillar Animal</title>
+  </head>
+
+  <body onload="main()">
+
+    Here is my Caterpillar!
+
+
+    <br>
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    <br/>
+    <p id="numdot"> XXX </p>
+    <br/>
+
+    Manual Joint Control:
+    <button type="button" id="aniOn">On</button>
+    <button type="button" id="aniOff">Off</button>
+    
+    <br>
+    Upper Joints   <input type="range" min="-10.0" max="10.0" value="0.0" class="slider" id="upperSlider">
+    <br/>
+    Lower Joints <input type="range" min="70" max="110" value="100" class="slider" id="lowerSlider">
+    
+
+    <br>
+    Rotation  <input type="range" min="0" max="360" value="30" class="slider" id="rotationSlider">
+
+    <br>
+    
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-matrix-cse160.js"></script>
+    <script src="lib/webgl-utils.js"></script>
+    <script src="BlockyAnimal.html"></script>
+    <script src="BlockyAnimal.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Point.js"></script>
+    <script src="Triangle.js"></script>
+  </body>
+</html>
