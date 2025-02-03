@@ -36,7 +36,7 @@ function setupWebGL () {
   // Retrieve <canvas> element
   canvas = document.getElementById('webgl');
 
-  // Get the rendering context for WebGL
+  // get the rendering context for WebGL
   gl = canvas.getContext("webgl", { preserveDrawingBuffer: true});
   if (!gl) {
     console.log('Failed to get the rendering context for WebGL');
@@ -54,20 +54,20 @@ function sendTextToHTML(text, htmlID) {
 } 
 
 function connectVariablesToGLSL() {
-    // Initialize shaders
+    // initialize shaders
     if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
       console.log('Failed to intialize shaders.');
       return;
     }
   
-    // // Get the storage location of a_Position
+    
     a_Position = gl.getAttribLocation(gl.program, 'a_Position');
     if (a_Position < 0) {
       console.log('Failed to get the storage location of a_Position');
       return;
     }
   
-    // Get the storage location of u_FragColor
+    
     u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
     if (!u_FragColor) {
       console.log('Failed to get the storage location of u_FragColor');
@@ -99,13 +99,13 @@ function main () {
   connectVariablesToGLSL();
 
   addHtmlUIActions();
-  // Register function (event handler) to be called on a mouse press
+  
   canvas.onmousedown = function(ev) {
     handleClick(ev);
 };
 
 function handleClick(ev) {
-    // Your existing click handling code here
+    
     [x, y] = convertCoordinatesToGL(ev);
     
     let point;
@@ -127,10 +127,10 @@ function handleClick(ev) {
     g_shapesList.push(point);
     renderAllShapes();
 }
-  // Specify the color for clearing <canvas>
+ 
   gl.clearColor(0.0, 0.0, 0.0, 0);
 
-  // Clear <canvas>
+  // clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   renderAllShapes();
@@ -138,7 +138,6 @@ function handleClick(ev) {
   requestAnimationFrame(tick);
 }
 
-//clock vars
 
 var g_clockStart = performance.now() / 1000.0;
 var g_clock = performance.now() / 1000.0 - g_clockStart;
@@ -164,16 +163,11 @@ let g_animation = true;
 let g_upperLock = false;
 function addHtmlUIActions() {
 
-  //button events
-
+  
   document.getElementById('aniOn').onclick = function() {g_animation = true; };
   document.getElementById('aniOff').onclick = function() {g_animation = false; };
 
-
-
   
-  //sliders
-
   document.getElementById("upperSlider").addEventListener("mousemove", function() {
     g_upperLock = false;
     if(!g_animation){
@@ -194,8 +188,8 @@ function addHtmlUIActions() {
 }
 
 function convertCoordinatesToGL(ev) {
-  var x = ev.clientX; // x coordinate of a mouse pointer
-  var y = ev.clientY; // y coordinate of a mouse pointer
+  var x = ev.clientX; 
+  var y = ev.clientY; 
   var rect = ev.target.getBoundingClientRect();
 
   x = ((x - rect.left) - canvas.width/2)/(canvas.width/2);
@@ -214,12 +208,11 @@ function updateAnimation(){
   if(g_animation){
     
     g_upperAngle =  10*Math.sin(10*g_clock);
-    //g_lowerAngle = -20*Math.sin(10*g_clock) +90;
+    
   }
   
-  //g_bodyTrans = 5* Math.sin(6*g_clock);
+  
 }
-
 
 function renderAllShapes() {
     var startTime = performance.now();
@@ -229,7 +222,7 @@ function renderAllShapes() {
     var globalRotationMat = new Matrix4().rotate(g_angle, 0, 1, 0);
     gl.uniformMatrix4fv(u_GlobalRotationMat, false, globalRotationMat.elements);
   
-    // Colors
+    // colors
     var bodyColor = [0.4, 0.8, 0.2, 1.0]; // this is light green
     var patternColor = [0.3, 0.6, 0.1, 1.0]; // dark green square pattern
     var faceColor = [0.8, 0.5, 0.2, 1.0]; // orange/brown for face
