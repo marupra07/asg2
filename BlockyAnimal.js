@@ -220,26 +220,6 @@ function updateAnimation(){
   //g_bodyTrans = 5* Math.sin(6*g_clock);
 }
 
-// BlockyButterfly.js
-// Keeping the shader sources and setup code the same
-var VSHADER_SOURCE = `
-  attribute vec4 a_Position;
-  uniform mat4 u_ModelMatrix;
-  uniform mat4 u_GlobalRotationMat;
-  uniform float u_Size;
-  void main() {
-    gl_Position = u_GlobalRotationMat * u_ModelMatrix * a_Position;
-    gl_PointSize = u_Size;
-  }
-`;
-
-var FSHADER_SOURCE = `
-  precision mediump float;
-  uniform vec4 u_FragColor;
-  void main() {
-    gl_FragColor = u_FragColor;
-  }
-`;
 
 function renderAllShapes() {
     var startTime = performance.now();
